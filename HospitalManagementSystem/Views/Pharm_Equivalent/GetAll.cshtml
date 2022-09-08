@@ -1,0 +1,45 @@
+﻿@model IEnumerable<HospitalManagementSystem.Models.Equivalence>
+
+<p>
+    @Html.ActionLink("Ajouter", "Create")
+</p>
+<table id="data-table1" class="table table-striped table-bordered nowrap" width="100%">
+    <thead>
+        <tr>
+
+            <th>
+                Médicament
+            </th>
+            <th>
+                Equivalent
+            </th>
+            <th>
+                Commentaire
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Medicament.NomCommercial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Medicament1.NomCommercial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Commentaire)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+</table>

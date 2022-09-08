@@ -1,0 +1,223 @@
+﻿@model HospitalManagementSystem.Models.ActePose
+
+<script src="~/Content/Template/assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+
+
+<link href="~/Content/Chosen/chosen.min.css" rel="stylesheet" />
+
+
+
+
+@using (Html.BeginForm("Part_Create_Examen", "Consultation"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+
+            <div class="col-md-10">
+                <input type="hidden" name="CodeFiche" id="CodeFiche_Examen" height="0" />
+
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <div class="col-md-10">
+                <input type="hidden" name="CodeMedecin" id="CodeMedecin_Examen" height="0" />
+
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.LibelleActe.FamilleActe1.Libelle, "Catégorie", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("CodeFamilleActe", null, htmlAttributes: new { @class = "form-control", id = "FamilleActe" })
+                    @Html.ValidationMessageFor(model => model.CodeActeMedicale, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.CodeActeMedicale, "Examen", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("CodeActeMedicale", null, htmlAttributes: new { @class = "form-control", id = "Acte" })
+                    @Html.ValidationMessageFor(model => model.CodeActeMedicale, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+
+        <div class="form-group">
+
+            <div class="col-md-10">
+                <label for="FamilleActe"><b>Famille des actes</b></label>
+                <select class="form-control" id="FamilleActe" name="CodeFamilleActe"></select>
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <div class="col-md-10">
+                <label for="LibActe"><b>Examen</b></label>
+                <select class="form-control" multiple="multiple" id="LibActe" name="CodeActeMedicale"></select>
+            </div>
+        </div>
+
+
+
+        @*<div class="form-group">
+
+                <div class="col-md-10">
+                    @Html.LabelFor(model => model.CodeLaborantin, "Laborantin", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.DropDownList("CodeLaborantin", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CodeLaborantin, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @*<input type="submit" value="Enregistrer" class="btn btn-default" />*@
+                @*<input type="button" value="Valider" id="" class="btn btn-default" />*@
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+
+<script type="text/javascript">
+
+
+
+    var setExameValues = function (CodeFiche, CodeMedecin) {
+        $("#CodeFiche_Examen").val(CodeFiche);
+        $("#CodeMedecin_Examen").val(CodeMedecin);
+
+    }
+
+
+    $(document).ready(function () {
+        
+        
+
+        $.ajax({
+            type: "GET",
+            url: "/Consultation/GetFamilleActeAjax",
+            data: "{}",
+            success: function (data) {
+                var s = '<option value="-1">Choisissez une catégorie  </option>';
+                for (var i = 0; i < data.length; i++) {
+                    s += '<option value="' + data[i].Id + '">' + data[i].Libelle + '</option>';
+                }
+                $("#FamilleActe").html(s);
+
+            }
+        });
+
+
+
+    });
+
+
+    $("#FamilleActe").change(function () {
+
+        var selectedFamilleActe = $("#FamilleActe").val();
+
+        $.ajax({
+            type: "GET",
+            url: "/Consultation/GetActeAjax/",
+            data: { "familleActe": selectedFamilleActe },
+            success: function (data) {
+                var s = null;
+                for (var i = 0; i < data.length; i++) {
+                    s += '<option value="' + data[i].Code + '">' + data[i].Libelle + '</option>';
+                }
+                $("#LibActe").html(s);
+
+                $("#LibActe").chosen();
+               
+                // jquery("#IdMedocc").chosen();
+                f();
+            }
+
+        });
+
+    });
+
+    function f() {
+
+
+        $("#btnSummitExam").click(function () {
+            SaveExamens();
+            $("#prescrirExamen").hide();
+        });
+    }
+
+
+    function SaveExamens() {
+        var codeFic = $("#CodeFiche_Examen").val();
+        var codeMEd = $("#CodeMedecin_Examen").val();
+        var examensList = "";
+        var listOfExams = [];
+        $.each($("#LibActe option:selected"),
+            function (index, data) {
+                // examensList += $(this).val() + " " + $(this).text() + "\n";
+                listOfExams.push($(this).val());
+            });
+        $.ajax({
+
+            dataType: 'JSON',
+
+            type: "POST",
+            url: "/Consultation/ExamenPostAjax/",
+            data: { "listOfExams": listOfExams, "CodeFiche": codeFic, "CodeMedecin": codeMEd },
+
+            success: function (data) {
+                alert("Examens prescrits avec succès");
+            },
+            error: function () {
+                alert('problème denregistrement de lacte');
+            }
+        });
+        //  alert(examensList);
+    }
+
+
+
+
+    //  $(document).ready(function () {
+    //    $("#IdMedoc").chosen();
+
+    //    getMedoc();
+
+    //});
+
+    //function getMedoc() {
+
+    //     $.ajax({
+    //        type: "GET",
+    //        url: "/Prescription/GetMedocAjax/",
+    //        data: { },
+    //        success: function (data) {
+    //            var s = null;
+    //            for (var i = 0; i < data.length; i++) {
+    //                s += '<option value="' + data[i].Code + '">' + data[i].Libelle + '</option>';
+    //            }
+    //            $("#IdMedoc").html(s);
+
+    //            $("#IdMedoc").chosen();
+
+
+    //        }
+
+    //    });
+
+
+</script>
+
+

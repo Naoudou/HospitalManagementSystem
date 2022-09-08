@@ -1,0 +1,1671 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Clinique_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ActePose">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodeFiche" Type="int" />
+          <Property Name="CodeActeMedicale" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CodeMedecin" Type="nvarchar" MaxLength="50" />
+          <Property Name="SigneClinique" Type="text" />
+          <Property Name="ExamenPhysique" Type="text" />
+          <Property Name="CodeInfirmier" Type="nvarchar" MaxLength="50" />
+          <Property Name="CodeLaborantin" Type="nvarchar" MaxLength="50" />
+          <Property Name="Paiement" Type="tinyint" Nullable="false" />
+          <Property Name="Motif" Type="text" />
+          <Property Name="ResumeSyndromique" Type="text" />
+          <Property Name="HistoireMaladie" Type="text" />
+          <Property Name="EnqueteSysteme" Type="text" />
+          <Property Name="Diagnostique" Type="text" />
+          <Property Name="Status" Type="tinyint" Nullable="false" />
+          <Property Name="Prix" Type="float" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Compte">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MotDePasse" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Statut" Type="tinyint" Nullable="false" />
+          <Property Name="CodePersonnel" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdRole" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Configuration">
+          <Key>
+            <PropertyRef Name="IdConfiguration" />
+          </Key>
+          <Property Name="IdConfiguration" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Libelle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdNature" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Equivalence">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdMedicament" />
+            <PropertyRef Name="IdEquivalent" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdMedicament" Type="int" Nullable="false" />
+          <Property Name="IdEquivalent" Type="int" Nullable="false" />
+          <Property Name="Commentaire" Type="text" />
+        </EntityType>
+        <EntityType Name="FamilleActe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Libelle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="text" />
+        </EntityType>
+        <EntityType Name="Fiche">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodePatient" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CodeSecretaire" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Paiement" Type="tinyint" Nullable="false" />
+          <Property Name="Raison" Type="int" />
+          <Property Name="CodeExamen" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="LibelleActe">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Libelle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FamilleActe" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="Prix" Type="float" />
+        </EntityType>
+        <EntityType Name="Medicament">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomCommercial" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="NomScientifique" Type="nvarchar" MaxLength="30" />
+          <Property Name="Quantite" Type="int" Nullable="false" />
+          <Property Name="Prix" Type="float" Nullable="false" />
+          <Property Name="Disponibilite" Type="tinyint" Nullable="false" />
+          <Property Name="Commentaire" Type="text" />
+          <Property Name="SeuilCritique" Type="int" Nullable="false" />
+          <Property Name="CategorieMedicament" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Nature">
+          <Key>
+            <PropertyRef Name="IdNature" />
+          </Key>
+          <Property Name="IdNature" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Libelle" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Parametre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tention" Type="float" />
+          <Property Name="Temperature" Type="float" />
+          <Property Name="Poids" Type="float" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="CodePatient" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Glycemie" Type="float" />
+          <Property Name="FrequenceCardiaque" Type="int" />
+          <Property Name="FrequenceRespiratoire" Type="int" />
+          <Property Name="Taille" Type="float" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prenom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NomComplet" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateNaissance" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Adresse" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sexe" Type="tinyint" />
+          <Property Name="AntecedentFamiliaux" Type="text" />
+          <Property Name="AntecedentChirucauxPersonnel" Type="text" />
+          <Property Name="AntecedentMedicauxPersonnel" Type="text" />
+          <Property Name="Allergie" Type="text" />
+          <Property Name="SituationMatrimogniale" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Personnel">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prenom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NomComplet" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateNaissance" Type="datetime" Nullable="false" />
+          <Property Name="Adresse" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sexe" Type="tinyint" Nullable="false" />
+          <Property Name="Photo" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdSpecialite" Type="int" />
+          <Property Name="IdService" Type="int" />
+          <Property Name="IdTypePersonnel" Type="int" />
+        </EntityType>
+        <EntityType Name="Planning">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateDebut" Type="datetime" Nullable="false" />
+          <Property Name="DateFin" Type="datetime" Nullable="false" />
+          <Property Name="HeureDebut" Type="datetime" Nullable="false" />
+          <Property Name="HeureFin" Type="datetime" Nullable="false" />
+          <Property Name="CodePersonnel" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Prescription">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdMedicament" Type="int" Nullable="false" />
+          <Property Name="IdConsultation" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Possologie" Type="text" />
+        </EntityType>
+        <EntityType Name="RendezVous">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdType" Type="int" Nullable="false" />
+          <Property Name="CodePatient" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CodeMedecin" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Statut" Type="tinyint" Nullable="false" />
+          <Property Name="Raison" Type="text" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="VenteMedicament">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Quantite" Type="int" Nullable="false" />
+          <Property Name="CodePharmacien" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdMedicament" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ActePose_Fiche">
+          <End Role="Fiche" Type="Self.Fiche" Multiplicity="0..1" />
+          <End Role="ActePose" Type="Self.ActePose" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fiche">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ActePose">
+              <PropertyRef Name="CodeFiche" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActePose_LibelleActe">
+          <End Role="LibelleActe" Type="Self.LibelleActe" Multiplicity="1" />
+          <End Role="ActePose" Type="Self.ActePose" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LibelleActe">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="ActePose">
+              <PropertyRef Name="CodeActeMedicale" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActePose_Personnel">
+          <End Role="Personnel" Type="Self.Personnel" Multiplicity="0..1" />
+          <End Role="ActePose" Type="Self.ActePose" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personnel">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="ActePose">
+              <PropertyRef Name="CodeMedecin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActePose_Personnel1">
+          <End Role="Personnel" Type="Self.Personnel" Multiplicity="0..1" />
+          <End Role="ActePose" Type="Self.ActePose" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personnel">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="ActePose">
+              <PropertyRef Name="CodeInfirmier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActePose_Personnel2">
+          <End Role="Personnel" Type="Self.Personnel" Multiplicity="0..1" />
+          <End Role="ActePose" Type="Self.ActePose" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personnel">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="ActePose">
+              <PropertyRef Name="CodeLaborantin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Compte_Configuration">
+          <End Role="Configuration" Type="Self.Configuration" Multiplicity="1" />
+          <End Role="Compte" Type="Self.Compte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Configuration">
+              <PropertyRef Name="IdConfiguration" />
+            </Principal>
+            <Dependent Role="Compte">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Compte_Personnel">
+          <End Role="Personnel" Type="Self.Personnel" Multiplicity="1" />
+          <End Role="Compte" Type="Self.Compte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personnel">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Compte">
+              <PropertyRef Name="CodePersonnel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Configuration_Nature">
+          <End Role="Nature" Type="Self.Nature" Multiplicity="1" />
+          <End Role="Configuration" Type="Self.Configuration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nature">
+              <PropertyRef Name="IdNature" />
+            </Principal>
+            <Dependent Role="Configuration">
+              <PropertyRef Name="IdNature" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Equivalence_Medicament">
+          <End Role="Medicament" Type="Self.Medicament" Multiplicity="1" />
+          <End Role="Equivalence" Type="Self.Equivalence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicament">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Equivalence">
+              <PropertyRef Name="IdMedicament" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Equivalence_Medicament1">
+          <End Role="Medicament" Type="Self.Medicament" Multiplicity="1" />
+          <End Role="Equivalence" Type="Self.Equivalence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicament">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Equivalence">
+              <PropertyRef Name="IdEquivalent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fiche_Configuration">
+          <End Role="Configuration" Type="Self.Configuration" Multiplicity="0..1" />
+          <End Role="Fiche" Type="Self.Fiche" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Configuration">
+              <PropertyRef Name="IdConfiguration" />
+            </Principal>
+            <Dependent Role="Fiche">
+              <PropertyRef Name="Raison" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fiche_LibelleActe">
+          <End Role="LibelleActe" Type="Self.LibelleActe" Multiplicity="0..1" />
+          <End Role="Fiche" Type="Self.Fiche" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LibelleActe">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Fiche">
+              <PropertyRef Name="CodeExamen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fiche_Patient">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+          <End Role="Fiche" Type="Self.Fiche" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Fiche">
+              <PropertyRef Name="CodePatient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fiche_Personnel">
+          <End Role="Personnel" Type="Self.Personnel" Multiplicity="1" />
+          <End Role="Fiche" Type="Self.Fiche" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personnel">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Fiche">
+              <PropertyRef Name="CodeSecretaire" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LibelleActe_FamilleActe">
+          <End Role="FamilleActe" Type="Self.FamilleActe" Multiplicity="1" />
+          <End Role="LibelleActe" Type="Self.LibelleActe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FamilleActe">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LibelleActe">
+              <PropertyRef Name="FamilleActe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Medicament_Configuration">
+          <End Role="Configuration" Type="Self.Configuration" Multiplicity="1" />
+          <End Role="Medicament" Type="Self.Medicament" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Configuration">
+              <PropertyRef Name="IdConfiguration" />
+            </Principal>
+            <Dependent Role="Medicament">
+              <PropertyRef Name="CategorieMedicament" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parametre_Patient">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+          <End Role="Parametre" Type="Self.Parametre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Parametre">
+              <PropertyRef Name="CodePatient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Personnel_Configuration">
+          <End Role="Configuration" Type="Self.Configuration" Multiplicity="0..1" />
+          <End Role="Personnel" Type="Self.Personnel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Configuration">
+              <PropertyRef Name="IdConfiguration" />
+            </Principal>
+            <Dependent Role="Personnel">
+              <PropertyRef Name="IdSpecialite" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Personnel_Configuration1">
+          <End Role="Configuration" Type="Self.Configuration" Multiplicity="0..1" />
+          <End Role="Personnel" Type="Self.Personnel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Configuration">
+              <PropertyRef Name="IdConfiguration" />
+            </Principal>
+            <Dependent Role="Personnel">
+              <PropertyRef Name="IdService" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Personnel_Configuration2">
+          <End Role="Configuration" Type="Self.Configuration" Multiplicity="0..1" />
+          <End Role="Personnel" Type="Self.Personnel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Configuration">
+              <PropertyRef Name="IdConfiguration" />
+            </Principal>
+            <Dependent Role="Personnel">
+              <PropertyRef Name="IdTypePersonnel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Planning_Personnel">
+          <End Role="Personnel" Type="Self.Personnel" Multiplicity="1" />
+          <End Role="Planning" Type="Self.Planning" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personnel">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Planning">
+              <PropertyRef Name="CodePersonnel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prescription_ActePose">
+          <End Role="ActePose" Type="Self.ActePose" Multiplicity="1" />
+          <End Role="Prescription" Type="Self.Prescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActePose">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Prescription">
+              <PropertyRef Name="IdConsultation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prescription_Medicament">
+          <End Role="Medicament" Type="Self.Medicament" Multiplicity="1" />
+          <End Role="Prescription" Type="Self.Prescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicament">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Prescription">
+              <PropertyRef Name="IdMedicament" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RendezVous_Configuration">
+          <End Role="Configuration" Type="Self.Configuration" Multiplicity="1" />
+          <End Role="RendezVous" Type="Self.RendezVous" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Configuration">
+              <PropertyRef Name="IdConfiguration" />
+            </Principal>
+            <Dependent Role="RendezVous">
+              <PropertyRef Name="IdType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RendezVous_Patient">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+          <End Role="RendezVous" Type="Self.RendezVous" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="RendezVous">
+              <PropertyRef Name="CodePatient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RendezVous_Personnel">
+          <End Role="Personnel" Type="Self.Personnel" Multiplicity="1" />
+          <End Role="RendezVous" Type="Self.RendezVous" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personnel">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="RendezVous">
+              <PropertyRef Name="CodeMedecin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VenteMedicament_Medicament">
+          <End Role="Medicament" Type="Self.Medicament" Multiplicity="1" />
+          <End Role="VenteMedicament" Type="Self.VenteMedicament" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicament">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VenteMedicament">
+              <PropertyRef Name="IdMedicament" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VenteMedicament_Personnel">
+          <End Role="Personnel" Type="Self.Personnel" Multiplicity="1" />
+          <End Role="VenteMedicament" Type="Self.VenteMedicament" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personnel">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="VenteMedicament">
+              <PropertyRef Name="CodePharmacien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Clinique_dbModelStoreContainer">
+          <EntitySet Name="ActePose" EntityType="Self.ActePose" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Compte" EntityType="Self.Compte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Configuration" EntityType="Self.Configuration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equivalence" EntityType="Self.Equivalence" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FamilleActe" EntityType="Self.FamilleActe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fiche" EntityType="Self.Fiche" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LibelleActe" EntityType="Self.LibelleActe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medicament" EntityType="Self.Medicament" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nature" EntityType="Self.Nature" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parametre" EntityType="Self.Parametre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Personnel" EntityType="Self.Personnel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Planning" EntityType="Self.Planning" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prescription" EntityType="Self.Prescription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RendezVous" EntityType="Self.RendezVous" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VenteMedicament" EntityType="Self.VenteMedicament" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ActePose_Fiche" Association="Self.FK_ActePose_Fiche">
+            <End Role="Fiche" EntitySet="Fiche" />
+            <End Role="ActePose" EntitySet="ActePose" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActePose_LibelleActe" Association="Self.FK_ActePose_LibelleActe">
+            <End Role="LibelleActe" EntitySet="LibelleActe" />
+            <End Role="ActePose" EntitySet="ActePose" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActePose_Personnel" Association="Self.FK_ActePose_Personnel">
+            <End Role="Personnel" EntitySet="Personnel" />
+            <End Role="ActePose" EntitySet="ActePose" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActePose_Personnel1" Association="Self.FK_ActePose_Personnel1">
+            <End Role="Personnel" EntitySet="Personnel" />
+            <End Role="ActePose" EntitySet="ActePose" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActePose_Personnel2" Association="Self.FK_ActePose_Personnel2">
+            <End Role="Personnel" EntitySet="Personnel" />
+            <End Role="ActePose" EntitySet="ActePose" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Compte_Configuration" Association="Self.FK_Compte_Configuration">
+            <End Role="Configuration" EntitySet="Configuration" />
+            <End Role="Compte" EntitySet="Compte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Compte_Personnel" Association="Self.FK_Compte_Personnel">
+            <End Role="Personnel" EntitySet="Personnel" />
+            <End Role="Compte" EntitySet="Compte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Configuration_Nature" Association="Self.FK_Configuration_Nature">
+            <End Role="Nature" EntitySet="Nature" />
+            <End Role="Configuration" EntitySet="Configuration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Equivalence_Medicament" Association="Self.FK_Equivalence_Medicament">
+            <End Role="Medicament" EntitySet="Medicament" />
+            <End Role="Equivalence" EntitySet="Equivalence" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Equivalence_Medicament1" Association="Self.FK_Equivalence_Medicament1">
+            <End Role="Medicament" EntitySet="Medicament" />
+            <End Role="Equivalence" EntitySet="Equivalence" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fiche_Configuration" Association="Self.FK_Fiche_Configuration">
+            <End Role="Configuration" EntitySet="Configuration" />
+            <End Role="Fiche" EntitySet="Fiche" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fiche_LibelleActe" Association="Self.FK_Fiche_LibelleActe">
+            <End Role="LibelleActe" EntitySet="LibelleActe" />
+            <End Role="Fiche" EntitySet="Fiche" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fiche_Patient" Association="Self.FK_Fiche_Patient">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="Fiche" EntitySet="Fiche" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fiche_Personnel" Association="Self.FK_Fiche_Personnel">
+            <End Role="Personnel" EntitySet="Personnel" />
+            <End Role="Fiche" EntitySet="Fiche" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LibelleActe_FamilleActe" Association="Self.FK_LibelleActe_FamilleActe">
+            <End Role="FamilleActe" EntitySet="FamilleActe" />
+            <End Role="LibelleActe" EntitySet="LibelleActe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Medicament_Configuration" Association="Self.FK_Medicament_Configuration">
+            <End Role="Configuration" EntitySet="Configuration" />
+            <End Role="Medicament" EntitySet="Medicament" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parametre_Patient" Association="Self.FK_Parametre_Patient">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="Parametre" EntitySet="Parametre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Personnel_Configuration" Association="Self.FK_Personnel_Configuration">
+            <End Role="Configuration" EntitySet="Configuration" />
+            <End Role="Personnel" EntitySet="Personnel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Personnel_Configuration1" Association="Self.FK_Personnel_Configuration1">
+            <End Role="Configuration" EntitySet="Configuration" />
+            <End Role="Personnel" EntitySet="Personnel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Personnel_Configuration2" Association="Self.FK_Personnel_Configuration2">
+            <End Role="Configuration" EntitySet="Configuration" />
+            <End Role="Personnel" EntitySet="Personnel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Planning_Personnel" Association="Self.FK_Planning_Personnel">
+            <End Role="Personnel" EntitySet="Personnel" />
+            <End Role="Planning" EntitySet="Planning" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prescription_ActePose" Association="Self.FK_Prescription_ActePose">
+            <End Role="ActePose" EntitySet="ActePose" />
+            <End Role="Prescription" EntitySet="Prescription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prescription_Medicament" Association="Self.FK_Prescription_Medicament">
+            <End Role="Medicament" EntitySet="Medicament" />
+            <End Role="Prescription" EntitySet="Prescription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RendezVous_Configuration" Association="Self.FK_RendezVous_Configuration">
+            <End Role="Configuration" EntitySet="Configuration" />
+            <End Role="RendezVous" EntitySet="RendezVous" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RendezVous_Patient" Association="Self.FK_RendezVous_Patient">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="RendezVous" EntitySet="RendezVous" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RendezVous_Personnel" Association="Self.FK_RendezVous_Personnel">
+            <End Role="Personnel" EntitySet="Personnel" />
+            <End Role="RendezVous" EntitySet="RendezVous" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VenteMedicament_Medicament" Association="Self.FK_VenteMedicament_Medicament">
+            <End Role="Medicament" EntitySet="Medicament" />
+            <End Role="VenteMedicament" EntitySet="VenteMedicament" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VenteMedicament_Personnel" Association="Self.FK_VenteMedicament_Personnel">
+            <End Role="Personnel" EntitySet="Personnel" />
+            <End Role="VenteMedicament" EntitySet="VenteMedicament" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Clinique_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ActePose">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodeFiche" Type="Int32" />
+          <Property Name="CodeActeMedicale" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CodeMedecin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SigneClinique" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ExamenPhysique" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CodeInfirmier" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CodeLaborantin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Paiement" Type="Byte" Nullable="false" />
+          <Property Name="Motif" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ResumeSyndromique" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="HistoireMaladie" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EnqueteSysteme" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Diagnostique" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Byte" Nullable="false" />
+          <Property Name="Prix" Type="Double" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Fiche" Relationship="Self.FK_ActePose_Fiche" FromRole="ActePose" ToRole="Fiche" />
+          <NavigationProperty Name="LibelleActe" Relationship="Self.FK_ActePose_LibelleActe" FromRole="ActePose" ToRole="LibelleActe" />
+          <NavigationProperty Name="Personnel" Relationship="Self.FK_ActePose_Personnel" FromRole="ActePose" ToRole="Personnel" />
+          <NavigationProperty Name="Personnel1" Relationship="Self.FK_ActePose_Personnel1" FromRole="ActePose" ToRole="Personnel" />
+          <NavigationProperty Name="Personnel2" Relationship="Self.FK_ActePose_Personnel2" FromRole="ActePose" ToRole="Personnel" />
+          <NavigationProperty Name="Prescriptions" Relationship="Self.FK_Prescription_ActePose" FromRole="ActePose" ToRole="Prescription" />
+        </EntityType>
+        <EntityType Name="Compte">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MotDePasse" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Statut" Type="Byte" Nullable="false" />
+          <Property Name="CodePersonnel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdRole" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Configuration" Relationship="Self.FK_Compte_Configuration" FromRole="Compte" ToRole="Configuration" />
+          <NavigationProperty Name="Personnel" Relationship="Self.FK_Compte_Personnel" FromRole="Compte" ToRole="Personnel" />
+        </EntityType>
+        <EntityType Name="Configuration">
+          <Key>
+            <PropertyRef Name="IdConfiguration" />
+          </Key>
+          <Property Name="IdConfiguration" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Libelle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdNature" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Comptes" Relationship="Self.FK_Compte_Configuration" FromRole="Configuration" ToRole="Compte" />
+          <NavigationProperty Name="Nature" Relationship="Self.FK_Configuration_Nature" FromRole="Configuration" ToRole="Nature" />
+          <NavigationProperty Name="Fiches" Relationship="Self.FK_Fiche_Configuration" FromRole="Configuration" ToRole="Fiche" />
+          <NavigationProperty Name="Medicaments" Relationship="Self.FK_Medicament_Configuration" FromRole="Configuration" ToRole="Medicament" />
+          <NavigationProperty Name="Personnels" Relationship="Self.FK_Personnel_Configuration" FromRole="Configuration" ToRole="Personnel" />
+          <NavigationProperty Name="Personnels1" Relationship="Self.FK_Personnel_Configuration1" FromRole="Configuration" ToRole="Personnel" />
+          <NavigationProperty Name="Personnels2" Relationship="Self.FK_Personnel_Configuration2" FromRole="Configuration" ToRole="Personnel" />
+          <NavigationProperty Name="RendezVous" Relationship="Self.FK_RendezVous_Configuration" FromRole="Configuration" ToRole="RendezVous" />
+        </EntityType>
+        <EntityType Name="Equivalence">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdMedicament" />
+            <PropertyRef Name="IdEquivalent" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdMedicament" Type="Int32" Nullable="false" />
+          <Property Name="IdEquivalent" Type="Int32" Nullable="false" />
+          <Property Name="Commentaire" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Medicament" Relationship="Self.FK_Equivalence_Medicament" FromRole="Equivalence" ToRole="Medicament" />
+          <NavigationProperty Name="Medicament1" Relationship="Self.FK_Equivalence_Medicament1" FromRole="Equivalence" ToRole="Medicament" />
+        </EntityType>
+        <EntityType Name="FamilleActe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Libelle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="LibelleActes" Relationship="Self.FK_LibelleActe_FamilleActe" FromRole="FamilleActe" ToRole="LibelleActe" />
+        </EntityType>
+        <EntityType Name="Fiche">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodePatient" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CodeSecretaire" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Paiement" Type="Byte" Nullable="false" />
+          <Property Name="Raison" Type="Int32" />
+          <Property Name="CodeExamen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ActePoses" Relationship="Self.FK_ActePose_Fiche" FromRole="Fiche" ToRole="ActePose" />
+          <NavigationProperty Name="Configuration" Relationship="Self.FK_Fiche_Configuration" FromRole="Fiche" ToRole="Configuration" />
+          <NavigationProperty Name="LibelleActe" Relationship="Self.FK_Fiche_LibelleActe" FromRole="Fiche" ToRole="LibelleActe" />
+          <NavigationProperty Name="Patient" Relationship="Self.FK_Fiche_Patient" FromRole="Fiche" ToRole="Patient" />
+          <NavigationProperty Name="Personnel" Relationship="Self.FK_Fiche_Personnel" FromRole="Fiche" ToRole="Personnel" />
+        </EntityType>
+        <EntityType Name="LibelleActe">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Libelle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FamilleActe" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Prix" Type="Double" />
+          <NavigationProperty Name="ActePoses" Relationship="Self.FK_ActePose_LibelleActe" FromRole="LibelleActe" ToRole="ActePose" />
+          <NavigationProperty Name="FamilleActe1" Relationship="Self.FK_LibelleActe_FamilleActe" FromRole="LibelleActe" ToRole="FamilleActe" />
+          <NavigationProperty Name="Fiches" Relationship="Self.FK_Fiche_LibelleActe" FromRole="LibelleActe" ToRole="Fiche" />
+        </EntityType>
+        <EntityType Name="Medicament">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomCommercial" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NomScientifique" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Quantite" Type="Int32" Nullable="false" />
+          <Property Name="Prix" Type="Double" Nullable="false" />
+          <Property Name="Disponibilite" Type="Byte" Nullable="false" />
+          <Property Name="Commentaire" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SeuilCritique" Type="Int32" Nullable="false" />
+          <Property Name="CategorieMedicament" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Configuration" Relationship="Self.FK_Medicament_Configuration" FromRole="Medicament" ToRole="Configuration" />
+          <NavigationProperty Name="Equivalences" Relationship="Self.FK_Equivalence_Medicament" FromRole="Medicament" ToRole="Equivalence" />
+          <NavigationProperty Name="Equivalences1" Relationship="Self.FK_Equivalence_Medicament1" FromRole="Medicament" ToRole="Equivalence" />
+          <NavigationProperty Name="Prescriptions" Relationship="Self.FK_Prescription_Medicament" FromRole="Medicament" ToRole="Prescription" />
+          <NavigationProperty Name="VenteMedicaments" Relationship="Self.FK_VenteMedicament_Medicament" FromRole="Medicament" ToRole="VenteMedicament" />
+        </EntityType>
+        <EntityType Name="Nature">
+          <Key>
+            <PropertyRef Name="IdNature" />
+          </Key>
+          <Property Name="IdNature" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Libelle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Configurations" Relationship="Self.FK_Configuration_Nature" FromRole="Nature" ToRole="Configuration" />
+        </EntityType>
+        <EntityType Name="Parametre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tention" Type="Double" />
+          <Property Name="Temperature" Type="Double" />
+          <Property Name="Poids" Type="Double" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CodePatient" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Glycemie" Type="Double" />
+          <Property Name="FrequenceCardiaque" Type="Int32" />
+          <Property Name="FrequenceRespiratoire" Type="Int32" />
+          <Property Name="Taille" Type="Double" />
+          <NavigationProperty Name="Patient" Relationship="Self.FK_Parametre_Patient" FromRole="Parametre" ToRole="Patient" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NomComplet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateNaissance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Adresse" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sexe" Type="Byte" />
+          <Property Name="AntecedentFamiliaux" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AntecedentChirucauxPersonnel" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AntecedentMedicauxPersonnel" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Allergie" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SituationMatrimogniale" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Fiches" Relationship="Self.FK_Fiche_Patient" FromRole="Patient" ToRole="Fiche" />
+          <NavigationProperty Name="Parametres" Relationship="Self.FK_Parametre_Patient" FromRole="Patient" ToRole="Parametre" />
+          <NavigationProperty Name="RendezVous" Relationship="Self.FK_RendezVous_Patient" FromRole="Patient" ToRole="RendezVous" />
+        </EntityType>
+        <EntityType Name="Personnel">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NomComplet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateNaissance" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Adresse" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telephone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sexe" Type="Byte" Nullable="false" />
+          <Property Name="Photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdSpecialite" Type="Int32" />
+          <Property Name="IdService" Type="Int32" />
+          <Property Name="IdTypePersonnel" Type="Int32" />
+          <NavigationProperty Name="ActePoses" Relationship="Self.FK_ActePose_Personnel" FromRole="Personnel" ToRole="ActePose" />
+          <NavigationProperty Name="ActePoses1" Relationship="Self.FK_ActePose_Personnel1" FromRole="Personnel" ToRole="ActePose" />
+          <NavigationProperty Name="ActePoses2" Relationship="Self.FK_ActePose_Personnel2" FromRole="Personnel" ToRole="ActePose" />
+          <NavigationProperty Name="Comptes" Relationship="Self.FK_Compte_Personnel" FromRole="Personnel" ToRole="Compte" />
+          <NavigationProperty Name="Configuration" Relationship="Self.FK_Personnel_Configuration" FromRole="Personnel" ToRole="Configuration" />
+          <NavigationProperty Name="Configuration1" Relationship="Self.FK_Personnel_Configuration1" FromRole="Personnel" ToRole="Configuration" />
+          <NavigationProperty Name="Configuration2" Relationship="Self.FK_Personnel_Configuration2" FromRole="Personnel" ToRole="Configuration" />
+          <NavigationProperty Name="Fiches" Relationship="Self.FK_Fiche_Personnel" FromRole="Personnel" ToRole="Fiche" />
+          <NavigationProperty Name="Plannings" Relationship="Self.FK_Planning_Personnel" FromRole="Personnel" ToRole="Planning" />
+          <NavigationProperty Name="RendezVous" Relationship="Self.FK_RendezVous_Personnel" FromRole="Personnel" ToRole="RendezVous" />
+          <NavigationProperty Name="VenteMedicaments" Relationship="Self.FK_VenteMedicament_Personnel" FromRole="Personnel" ToRole="VenteMedicament" />
+        </EntityType>
+        <EntityType Name="Planning">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateDebut" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateFin" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HeureDebut" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HeureFin" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CodePersonnel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Personnel" Relationship="Self.FK_Planning_Personnel" FromRole="Planning" ToRole="Personnel" />
+        </EntityType>
+        <EntityType Name="Prescription">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdMedicament" Type="Int32" Nullable="false" />
+          <Property Name="IdConsultation" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Possologie" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ActePose" Relationship="Self.FK_Prescription_ActePose" FromRole="Prescription" ToRole="ActePose" />
+          <NavigationProperty Name="Medicament" Relationship="Self.FK_Prescription_Medicament" FromRole="Prescription" ToRole="Medicament" />
+        </EntityType>
+        <EntityType Name="RendezVou">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdType" Type="Int32" Nullable="false" />
+          <Property Name="CodePatient" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CodeMedecin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Statut" Type="Byte" Nullable="false" />
+          <Property Name="Raison" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Configuration" Relationship="Self.FK_RendezVous_Configuration" FromRole="RendezVous" ToRole="Configuration" />
+          <NavigationProperty Name="Patient" Relationship="Self.FK_RendezVous_Patient" FromRole="RendezVous" ToRole="Patient" />
+          <NavigationProperty Name="Personnel" Relationship="Self.FK_RendezVous_Personnel" FromRole="RendezVous" ToRole="Personnel" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="VenteMedicament">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Quantite" Type="Int32" Nullable="false" />
+          <Property Name="CodePharmacien" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdMedicament" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Medicament" Relationship="Self.FK_VenteMedicament_Medicament" FromRole="VenteMedicament" ToRole="Medicament" />
+          <NavigationProperty Name="Personnel" Relationship="Self.FK_VenteMedicament_Personnel" FromRole="VenteMedicament" ToRole="Personnel" />
+        </EntityType>
+        <Association Name="FK_ActePose_Fiche">
+          <End Role="Fiche" Type="Self.Fiche" Multiplicity="0..1" />
+          <End Role="ActePose" Type="Self.ActePose" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fiche">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ActePose">
+              <PropertyRef Name="CodeFiche" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActePose_LibelleActe">
+          <End Role="LibelleActe" Type="Self.LibelleActe" Multiplicity="1" />
+          <End Role="ActePose" Type="Self.ActePose" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LibelleActe">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="ActePose">
+              <PropertyRef Name="CodeActeMedicale" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActePose_Personnel">
+          <End Role="Personnel" Type="Self.Personnel" Multiplicity="0..1" />
+          <End Role="ActePose" Type="Self.ActePose" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personnel">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="ActePose">
+              <PropertyRef Name="CodeMedecin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActePose_Personnel1">
+          <End Role="Personnel" Type="Self.Personnel" Multiplicity="0..1" />
+          <End Role="ActePose" Type="Self.ActePose" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personnel">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="ActePose">
+              <PropertyRef Name="CodeInfirmier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActePose_Personnel2">
+          <End Role="Personnel" Type="Self.Personnel" Multiplicity="0..1" />
+          <End Role="ActePose" Type="Self.ActePose" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personnel">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="ActePose">
+              <PropertyRef Name="CodeLaborantin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prescription_ActePose">
+          <End Role="ActePose" Type="Self.ActePose" Multiplicity="1" />
+          <End Role="Prescription" Type="Self.Prescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActePose">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Prescription">
+              <PropertyRef Name="IdConsultation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Compte_Configuration">
+          <End Role="Configuration" Type="Self.Configuration" Multiplicity="1" />
+          <End Role="Compte" Type="Self.Compte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Configuration">
+              <PropertyRef Name="IdConfiguration" />
+            </Principal>
+            <Dependent Role="Compte">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Compte_Personnel">
+          <End Role="Personnel" Type="Self.Personnel" Multiplicity="1" />
+          <End Role="Compte" Type="Self.Compte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personnel">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Compte">
+              <PropertyRef Name="CodePersonnel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Configuration_Nature">
+          <End Role="Nature" Type="Self.Nature" Multiplicity="1" />
+          <End Role="Configuration" Type="Self.Configuration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nature">
+              <PropertyRef Name="IdNature" />
+            </Principal>
+            <Dependent Role="Configuration">
+              <PropertyRef Name="IdNature" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fiche_Configuration">
+          <End Role="Configuration" Type="Self.Configuration" Multiplicity="0..1" />
+          <End Role="Fiche" Type="Self.Fiche" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Configuration">
+              <PropertyRef Name="IdConfiguration" />
+            </Principal>
+            <Dependent Role="Fiche">
+              <PropertyRef Name="Raison" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Medicament_Configuration">
+          <End Role="Configuration" Type="Self.Configuration" Multiplicity="1" />
+          <End Role="Medicament" Type="Self.Medicament" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Configuration">
+              <PropertyRef Name="IdConfiguration" />
+            </Principal>
+            <Dependent Role="Medicament">
+              <PropertyRef Name="CategorieMedicament" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Personnel_Configuration">
+          <End Role="Configuration" Type="Self.Configuration" Multiplicity="0..1" />
+          <End Role="Personnel" Type="Self.Personnel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Configuration">
+              <PropertyRef Name="IdConfiguration" />
+            </Principal>
+            <Dependent Role="Personnel">
+              <PropertyRef Name="IdSpecialite" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Personnel_Configuration1">
+          <End Role="Configuration" Type="Self.Configuration" Multiplicity="0..1" />
+          <End Role="Personnel" Type="Self.Personnel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Configuration">
+              <PropertyRef Name="IdConfiguration" />
+            </Principal>
+            <Dependent Role="Personnel">
+              <PropertyRef Name="IdService" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Personnel_Configuration2">
+          <End Role="Configuration" Type="Self.Configuration" Multiplicity="0..1" />
+          <End Role="Personnel" Type="Self.Personnel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Configuration">
+              <PropertyRef Name="IdConfiguration" />
+            </Principal>
+            <Dependent Role="Personnel">
+              <PropertyRef Name="IdTypePersonnel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RendezVous_Configuration">
+          <End Role="Configuration" Type="Self.Configuration" Multiplicity="1" />
+          <End Role="RendezVous" Type="Self.RendezVou" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Configuration">
+              <PropertyRef Name="IdConfiguration" />
+            </Principal>
+            <Dependent Role="RendezVous">
+              <PropertyRef Name="IdType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Equivalence_Medicament">
+          <End Role="Medicament" Type="Self.Medicament" Multiplicity="1" />
+          <End Role="Equivalence" Type="Self.Equivalence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicament">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Equivalence">
+              <PropertyRef Name="IdMedicament" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Equivalence_Medicament1">
+          <End Role="Medicament" Type="Self.Medicament" Multiplicity="1" />
+          <End Role="Equivalence" Type="Self.Equivalence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicament">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Equivalence">
+              <PropertyRef Name="IdEquivalent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LibelleActe_FamilleActe">
+          <End Role="FamilleActe" Type="Self.FamilleActe" Multiplicity="1" />
+          <End Role="LibelleActe" Type="Self.LibelleActe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FamilleActe">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LibelleActe">
+              <PropertyRef Name="FamilleActe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fiche_LibelleActe">
+          <End Role="LibelleActe" Type="Self.LibelleActe" Multiplicity="0..1" />
+          <End Role="Fiche" Type="Self.Fiche" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LibelleActe">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Fiche">
+              <PropertyRef Name="CodeExamen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fiche_Patient">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+          <End Role="Fiche" Type="Self.Fiche" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Fiche">
+              <PropertyRef Name="CodePatient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fiche_Personnel">
+          <End Role="Personnel" Type="Self.Personnel" Multiplicity="1" />
+          <End Role="Fiche" Type="Self.Fiche" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personnel">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Fiche">
+              <PropertyRef Name="CodeSecretaire" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prescription_Medicament">
+          <End Role="Medicament" Type="Self.Medicament" Multiplicity="1" />
+          <End Role="Prescription" Type="Self.Prescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicament">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Prescription">
+              <PropertyRef Name="IdMedicament" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VenteMedicament_Medicament">
+          <End Role="Medicament" Type="Self.Medicament" Multiplicity="1" />
+          <End Role="VenteMedicament" Type="Self.VenteMedicament" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicament">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VenteMedicament">
+              <PropertyRef Name="IdMedicament" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parametre_Patient">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+          <End Role="Parametre" Type="Self.Parametre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Parametre">
+              <PropertyRef Name="CodePatient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RendezVous_Patient">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+          <End Role="RendezVous" Type="Self.RendezVou" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="RendezVous">
+              <PropertyRef Name="CodePatient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Planning_Personnel">
+          <End Role="Personnel" Type="Self.Personnel" Multiplicity="1" />
+          <End Role="Planning" Type="Self.Planning" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personnel">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Planning">
+              <PropertyRef Name="CodePersonnel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RendezVous_Personnel">
+          <End Role="Personnel" Type="Self.Personnel" Multiplicity="1" />
+          <End Role="RendezVous" Type="Self.RendezVou" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personnel">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="RendezVous">
+              <PropertyRef Name="CodeMedecin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VenteMedicament_Personnel">
+          <End Role="Personnel" Type="Self.Personnel" Multiplicity="1" />
+          <End Role="VenteMedicament" Type="Self.VenteMedicament" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personnel">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="VenteMedicament">
+              <PropertyRef Name="CodePharmacien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Clinique_dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ActePoses" EntityType="Self.ActePose" />
+          <EntitySet Name="Comptes" EntityType="Self.Compte" />
+          <EntitySet Name="Configurations" EntityType="Self.Configuration" />
+          <EntitySet Name="Equivalences" EntityType="Self.Equivalence" />
+          <EntitySet Name="FamilleActes" EntityType="Self.FamilleActe" />
+          <EntitySet Name="Fiches" EntityType="Self.Fiche" />
+          <EntitySet Name="LibelleActes" EntityType="Self.LibelleActe" />
+          <EntitySet Name="Medicaments" EntityType="Self.Medicament" />
+          <EntitySet Name="Natures" EntityType="Self.Nature" />
+          <EntitySet Name="Parametres" EntityType="Self.Parametre" />
+          <EntitySet Name="Patients" EntityType="Self.Patient" />
+          <EntitySet Name="Personnels" EntityType="Self.Personnel" />
+          <EntitySet Name="Plannings" EntityType="Self.Planning" />
+          <EntitySet Name="Prescriptions" EntityType="Self.Prescription" />
+          <EntitySet Name="RendezVous" EntityType="Self.RendezVou" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="VenteMedicaments" EntityType="Self.VenteMedicament" />
+          <AssociationSet Name="FK_ActePose_Fiche" Association="Self.FK_ActePose_Fiche">
+            <End Role="Fiche" EntitySet="Fiches" />
+            <End Role="ActePose" EntitySet="ActePoses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActePose_LibelleActe" Association="Self.FK_ActePose_LibelleActe">
+            <End Role="LibelleActe" EntitySet="LibelleActes" />
+            <End Role="ActePose" EntitySet="ActePoses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActePose_Personnel" Association="Self.FK_ActePose_Personnel">
+            <End Role="Personnel" EntitySet="Personnels" />
+            <End Role="ActePose" EntitySet="ActePoses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActePose_Personnel1" Association="Self.FK_ActePose_Personnel1">
+            <End Role="Personnel" EntitySet="Personnels" />
+            <End Role="ActePose" EntitySet="ActePoses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActePose_Personnel2" Association="Self.FK_ActePose_Personnel2">
+            <End Role="Personnel" EntitySet="Personnels" />
+            <End Role="ActePose" EntitySet="ActePoses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prescription_ActePose" Association="Self.FK_Prescription_ActePose">
+            <End Role="ActePose" EntitySet="ActePoses" />
+            <End Role="Prescription" EntitySet="Prescriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Compte_Configuration" Association="Self.FK_Compte_Configuration">
+            <End Role="Configuration" EntitySet="Configurations" />
+            <End Role="Compte" EntitySet="Comptes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Compte_Personnel" Association="Self.FK_Compte_Personnel">
+            <End Role="Personnel" EntitySet="Personnels" />
+            <End Role="Compte" EntitySet="Comptes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Configuration_Nature" Association="Self.FK_Configuration_Nature">
+            <End Role="Nature" EntitySet="Natures" />
+            <End Role="Configuration" EntitySet="Configurations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fiche_Configuration" Association="Self.FK_Fiche_Configuration">
+            <End Role="Configuration" EntitySet="Configurations" />
+            <End Role="Fiche" EntitySet="Fiches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Medicament_Configuration" Association="Self.FK_Medicament_Configuration">
+            <End Role="Configuration" EntitySet="Configurations" />
+            <End Role="Medicament" EntitySet="Medicaments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Personnel_Configuration" Association="Self.FK_Personnel_Configuration">
+            <End Role="Configuration" EntitySet="Configurations" />
+            <End Role="Personnel" EntitySet="Personnels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Personnel_Configuration1" Association="Self.FK_Personnel_Configuration1">
+            <End Role="Configuration" EntitySet="Configurations" />
+            <End Role="Personnel" EntitySet="Personnels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Personnel_Configuration2" Association="Self.FK_Personnel_Configuration2">
+            <End Role="Configuration" EntitySet="Configurations" />
+            <End Role="Personnel" EntitySet="Personnels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RendezVous_Configuration" Association="Self.FK_RendezVous_Configuration">
+            <End Role="Configuration" EntitySet="Configurations" />
+            <End Role="RendezVous" EntitySet="RendezVous" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Equivalence_Medicament" Association="Self.FK_Equivalence_Medicament">
+            <End Role="Medicament" EntitySet="Medicaments" />
+            <End Role="Equivalence" EntitySet="Equivalences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Equivalence_Medicament1" Association="Self.FK_Equivalence_Medicament1">
+            <End Role="Medicament" EntitySet="Medicaments" />
+            <End Role="Equivalence" EntitySet="Equivalences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LibelleActe_FamilleActe" Association="Self.FK_LibelleActe_FamilleActe">
+            <End Role="FamilleActe" EntitySet="FamilleActes" />
+            <End Role="LibelleActe" EntitySet="LibelleActes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fiche_LibelleActe" Association="Self.FK_Fiche_LibelleActe">
+            <End Role="LibelleActe" EntitySet="LibelleActes" />
+            <End Role="Fiche" EntitySet="Fiches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fiche_Patient" Association="Self.FK_Fiche_Patient">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="Fiche" EntitySet="Fiches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fiche_Personnel" Association="Self.FK_Fiche_Personnel">
+            <End Role="Personnel" EntitySet="Personnels" />
+            <End Role="Fiche" EntitySet="Fiches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prescription_Medicament" Association="Self.FK_Prescription_Medicament">
+            <End Role="Medicament" EntitySet="Medicaments" />
+            <End Role="Prescription" EntitySet="Prescriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VenteMedicament_Medicament" Association="Self.FK_VenteMedicament_Medicament">
+            <End Role="Medicament" EntitySet="Medicaments" />
+            <End Role="VenteMedicament" EntitySet="VenteMedicaments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parametre_Patient" Association="Self.FK_Parametre_Patient">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="Parametre" EntitySet="Parametres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RendezVous_Patient" Association="Self.FK_RendezVous_Patient">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="RendezVous" EntitySet="RendezVous" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Planning_Personnel" Association="Self.FK_Planning_Personnel">
+            <End Role="Personnel" EntitySet="Personnels" />
+            <End Role="Planning" EntitySet="Plannings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RendezVous_Personnel" Association="Self.FK_RendezVous_Personnel">
+            <End Role="Personnel" EntitySet="Personnels" />
+            <End Role="RendezVous" EntitySet="RendezVous" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VenteMedicament_Personnel" Association="Self.FK_VenteMedicament_Personnel">
+            <End Role="Personnel" EntitySet="Personnels" />
+            <End Role="VenteMedicament" EntitySet="VenteMedicaments" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Clinique_dbModelStoreContainer" CdmEntityContainer="Clinique_dbEntities">
+          <EntitySetMapping Name="ActePoses">
+            <EntityTypeMapping TypeName="Clinique_dbModel.ActePose">
+              <MappingFragment StoreEntitySet="ActePose">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CodeFiche" ColumnName="CodeFiche" />
+                <ScalarProperty Name="CodeActeMedicale" ColumnName="CodeActeMedicale" />
+                <ScalarProperty Name="CodeMedecin" ColumnName="CodeMedecin" />
+                <ScalarProperty Name="SigneClinique" ColumnName="SigneClinique" />
+                <ScalarProperty Name="ExamenPhysique" ColumnName="ExamenPhysique" />
+                <ScalarProperty Name="CodeInfirmier" ColumnName="CodeInfirmier" />
+                <ScalarProperty Name="CodeLaborantin" ColumnName="CodeLaborantin" />
+                <ScalarProperty Name="Paiement" ColumnName="Paiement" />
+                <ScalarProperty Name="Motif" ColumnName="Motif" />
+                <ScalarProperty Name="ResumeSyndromique" ColumnName="ResumeSyndromique" />
+                <ScalarProperty Name="HistoireMaladie" ColumnName="HistoireMaladie" />
+                <ScalarProperty Name="EnqueteSysteme" ColumnName="EnqueteSysteme" />
+                <ScalarProperty Name="Diagnostique" ColumnName="Diagnostique" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Prix" ColumnName="Prix" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comptes">
+            <EntityTypeMapping TypeName="Clinique_dbModel.Compte">
+              <MappingFragment StoreEntitySet="Compte">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="MotDePasse" ColumnName="MotDePasse" />
+                <ScalarProperty Name="Statut" ColumnName="Statut" />
+                <ScalarProperty Name="CodePersonnel" ColumnName="CodePersonnel" />
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Configurations">
+            <EntityTypeMapping TypeName="Clinique_dbModel.Configuration">
+              <MappingFragment StoreEntitySet="Configuration">
+                <ScalarProperty Name="IdConfiguration" ColumnName="IdConfiguration" />
+                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+                <ScalarProperty Name="IdNature" ColumnName="IdNature" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equivalences">
+            <EntityTypeMapping TypeName="Clinique_dbModel.Equivalence">
+              <MappingFragment StoreEntitySet="Equivalence">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdMedicament" ColumnName="IdMedicament" />
+                <ScalarProperty Name="IdEquivalent" ColumnName="IdEquivalent" />
+                <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FamilleActes">
+            <EntityTypeMapping TypeName="Clinique_dbModel.FamilleActe">
+              <MappingFragment StoreEntitySet="FamilleActe">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fiches">
+            <EntityTypeMapping TypeName="Clinique_dbModel.Fiche">
+              <MappingFragment StoreEntitySet="Fiche">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CodePatient" ColumnName="CodePatient" />
+                <ScalarProperty Name="CodeSecretaire" ColumnName="CodeSecretaire" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Paiement" ColumnName="Paiement" />
+                <ScalarProperty Name="Raison" ColumnName="Raison" />
+                <ScalarProperty Name="CodeExamen" ColumnName="CodeExamen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LibelleActes">
+            <EntityTypeMapping TypeName="Clinique_dbModel.LibelleActe">
+              <MappingFragment StoreEntitySet="LibelleActe">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+                <ScalarProperty Name="FamilleActe" ColumnName="FamilleActe" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Prix" ColumnName="Prix" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Medicaments">
+            <EntityTypeMapping TypeName="Clinique_dbModel.Medicament">
+              <MappingFragment StoreEntitySet="Medicament">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="NomCommercial" ColumnName="NomCommercial" />
+                <ScalarProperty Name="NomScientifique" ColumnName="NomScientifique" />
+                <ScalarProperty Name="Quantite" ColumnName="Quantite" />
+                <ScalarProperty Name="Prix" ColumnName="Prix" />
+                <ScalarProperty Name="Disponibilite" ColumnName="Disponibilite" />
+                <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
+                <ScalarProperty Name="SeuilCritique" ColumnName="SeuilCritique" />
+                <ScalarProperty Name="CategorieMedicament" ColumnName="CategorieMedicament" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Natures">
+            <EntityTypeMapping TypeName="Clinique_dbModel.Nature">
+              <MappingFragment StoreEntitySet="Nature">
+                <ScalarProperty Name="IdNature" ColumnName="IdNature" />
+                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parametres">
+            <EntityTypeMapping TypeName="Clinique_dbModel.Parametre">
+              <MappingFragment StoreEntitySet="Parametre">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Tention" ColumnName="Tention" />
+                <ScalarProperty Name="Temperature" ColumnName="Temperature" />
+                <ScalarProperty Name="Poids" ColumnName="Poids" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CodePatient" ColumnName="CodePatient" />
+                <ScalarProperty Name="Glycemie" ColumnName="Glycemie" />
+                <ScalarProperty Name="FrequenceCardiaque" ColumnName="FrequenceCardiaque" />
+                <ScalarProperty Name="FrequenceRespiratoire" ColumnName="FrequenceRespiratoire" />
+                <ScalarProperty Name="Taille" ColumnName="Taille" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patients">
+            <EntityTypeMapping TypeName="Clinique_dbModel.Patient">
+              <MappingFragment StoreEntitySet="Patient">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="NomComplet" ColumnName="NomComplet" />
+                <ScalarProperty Name="DateNaissance" ColumnName="DateNaissance" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Sexe" ColumnName="Sexe" />
+                <ScalarProperty Name="AntecedentFamiliaux" ColumnName="AntecedentFamiliaux" />
+                <ScalarProperty Name="AntecedentChirucauxPersonnel" ColumnName="AntecedentChirucauxPersonnel" />
+                <ScalarProperty Name="AntecedentMedicauxPersonnel" ColumnName="AntecedentMedicauxPersonnel" />
+                <ScalarProperty Name="Allergie" ColumnName="Allergie" />
+                <ScalarProperty Name="SituationMatrimogniale" ColumnName="SituationMatrimogniale" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personnels">
+            <EntityTypeMapping TypeName="Clinique_dbModel.Personnel">
+              <MappingFragment StoreEntitySet="Personnel">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="NomComplet" ColumnName="NomComplet" />
+                <ScalarProperty Name="DateNaissance" ColumnName="DateNaissance" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Sexe" ColumnName="Sexe" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="IdSpecialite" ColumnName="IdSpecialite" />
+                <ScalarProperty Name="IdService" ColumnName="IdService" />
+                <ScalarProperty Name="IdTypePersonnel" ColumnName="IdTypePersonnel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plannings">
+            <EntityTypeMapping TypeName="Clinique_dbModel.Planning">
+              <MappingFragment StoreEntitySet="Planning">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DateDebut" ColumnName="DateDebut" />
+                <ScalarProperty Name="DateFin" ColumnName="DateFin" />
+                <ScalarProperty Name="HeureDebut" ColumnName="HeureDebut" />
+                <ScalarProperty Name="HeureFin" ColumnName="HeureFin" />
+                <ScalarProperty Name="CodePersonnel" ColumnName="CodePersonnel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prescriptions">
+            <EntityTypeMapping TypeName="Clinique_dbModel.Prescription">
+              <MappingFragment StoreEntitySet="Prescription">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdMedicament" ColumnName="IdMedicament" />
+                <ScalarProperty Name="IdConsultation" ColumnName="IdConsultation" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Possologie" ColumnName="Possologie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RendezVous">
+            <EntityTypeMapping TypeName="Clinique_dbModel.RendezVou">
+              <MappingFragment StoreEntitySet="RendezVous">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdType" ColumnName="IdType" />
+                <ScalarProperty Name="CodePatient" ColumnName="CodePatient" />
+                <ScalarProperty Name="CodeMedecin" ColumnName="CodeMedecin" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Statut" ColumnName="Statut" />
+                <ScalarProperty Name="Raison" ColumnName="Raison" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Clinique_dbModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VenteMedicaments">
+            <EntityTypeMapping TypeName="Clinique_dbModel.VenteMedicament">
+              <MappingFragment StoreEntitySet="VenteMedicament">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Quantite" ColumnName="Quantite" />
+                <ScalarProperty Name="CodePharmacien" ColumnName="CodePharmacien" />
+                <ScalarProperty Name="IdMedicament" ColumnName="IdMedicament" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

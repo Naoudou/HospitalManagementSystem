@@ -1,0 +1,73 @@
+﻿@model HospitalManagementSystem.Models.Compte
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Voulez-vous vraiment désactiver ce compte ?</h3>
+<div>
+    <h4>Désactivation de compte</h4>
+    <hr />
+
+    @{ int Id = Model.Id; }
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Login)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Login)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MotDePasse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MotDePasse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Statut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Statut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Configuration.Libelle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Configuration.Libelle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Personnel.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Personnel.Nom)
+        </dd>
+
+    </dl>
+
+    @*@using (Html.BeginForm("ActiverDesactiverConfirmed", "Compte"))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+
+                 @Html.DisplayFor(model => model.Id)
+                @Html.ActionLink("Annuler", "Index")
+
+            </div>
+        }*@
+        <a href="@Url.Action("ActiverDesactiverConfirmed","Compte",new { id = Model.Id })">Validation</a>
+         @Html.ActionLink("Annuler", "Index","Compte")
+</div>

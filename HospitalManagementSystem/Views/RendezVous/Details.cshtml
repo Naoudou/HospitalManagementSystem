@@ -1,0 +1,67 @@
+﻿@model HospitalManagementSystem.Models.RendezVou
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RendezVou</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Statut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Statut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Raison)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Raison)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Configuration.Libelle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Configuration.Libelle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Personnel.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Personnel.Nom)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

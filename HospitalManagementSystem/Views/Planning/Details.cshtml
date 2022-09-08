@@ -1,0 +1,59 @@
+﻿@model HospitalManagementSystem.Models.Planning
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Planning</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DateDebut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateDebut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateFin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateFin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HeureDebut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HeureDebut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HeureFin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HeureFin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Personnel.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Personnel.Nom)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

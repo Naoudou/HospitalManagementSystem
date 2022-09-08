@@ -1,0 +1,66 @@
+﻿@model IEnumerable<HospitalManagementSystem.Models.RendezVou>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<p>
+    @Html.ActionLink("Nouveau", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+           Patient
+        </th>
+        <th>
+           Medecin
+        </th>
+        <th>
+            Date
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Statut)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Raison)
+        </th>
+        <th>
+            Type RDV
+        </th>
+
+        <th>Action</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Patient.Nom)
+            @Html.DisplayFor(modelItem => item.Patient.Prenom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Personnel.NomComplet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Statut)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Raison)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Configuration.Libelle)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Supp", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

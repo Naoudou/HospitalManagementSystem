@@ -1,0 +1,70 @@
+﻿@model IEnumerable<HospitalManagementSystem.Models.RendezVou>
+
+<table  class="table table-striped table-bordered nowrap" width="100%">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+           Patient
+        </th>
+        <th>
+           Medecin
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Statut)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Raison)
+        </th>
+        <th>
+           Type
+        </th>
+
+        <th>Action</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Patient.NomComplet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Personnel.NomComplet)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Statut)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Raison)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Configuration.Libelle)
+        </td>
+        
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
+            @Html.ActionLink("Supprim", "Delete", new { id = item.Id, @class="btn mb-1 btn-warning btn-xs" })
+            <button id="modalActivate" onclick="initpatient(@item.Id,'@item.CodeMedecin')" type="button" class="btn mb-1 btn-primary btn-xs" data-toggle="modal" data-target="#@item.Id">
+                    Cons
+                </button>
+            <button onclick="setExameValues('@item.CodePatient','@item.CodeMedecin')" type="button" class="btn mb-1 btn-warning btn-xs" data-toggle="modal" data-target="#prescrirExamen">
+                examen
+            </button>
+
+            <button onclick="setExameValues('@item.CodePatient','@item.CodeMedecin')" type="button" class="btn mb-1 btn-success btn-xs" data-toggle="modal" data-target="#PresMedocApresCons">
+                Médoc
+            </button>
+
+            <button onclick="initRdvPatient('@item.CodePatient')" type="button" class="btn mb-1 btn-primary btn-xs" data-toggle="modal" data-target="#ModalRdv">
+                RDV
+            </button>
+        </td>
+    </tr>
+}
+
+</table>

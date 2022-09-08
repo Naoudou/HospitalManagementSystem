@@ -1,0 +1,170 @@
+﻿@model HospitalManagementSystem.Models.Personnel
+
+@{
+    ViewBag.Title = "Profil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{
+    string photo = Session["Photo"] as string;
+    string path = "~/Img/";
+}
+
+<div class="container-fluid">
+    <div class="modal fade" id="modalProfilImage">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+
+
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="myModalBody">
+                    @using (Html.BeginForm("SaveProfil", "Compte", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="card">
+                            <div class="card-body">
+
+                                <div class="media align-items-center mb-4">
+
+                                    <div class="media-body">
+                                        <img class="mr-3" id="profilImageModoal" width="80" height="80" alt="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-5">
+                                    <div class="col">
+                                        <div class="card card-profile text-center">
+                                            <input type="file" id="imgfile" value="Choisir une photo" name="imgfile" onchange="previewimg(event)" />
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card card-profile text-center">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-12 text-center">
+
+                                        <input type="submit" class="btn btn-danger px-5" value="Enregistrer" />
+                                    </div>
+
+                                    <input type="hidden" name="Code" value="@Session["Code"]" />
+                                </div>
+
+                            </div>
+                        </div>
+
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-4 col-xl-8">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-4">
+
+                        </div>
+                        <div class="col-4">
+                            <div class="media ">
+
+                                <div class="media-body">
+                                    <img class="mr-3 img-circle" src="~/Img/NAFU120720.jpg" id="profilImage" width="80" height="80" alt="Photo de profil">
+                                    <h3 class="mb-0">
+                                        @*@{
+                                            if (Session["NomCompte"] != null)
+                                            {
+                                                <b style="color:green"><b>Admin</b> @Session["NomCompte"]</b>
+
+                                            }
+                                        }*@
+                                    </h3>
+                                    
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-4">
+
+                        </div>
+                    </div>
+
+
+                    <div class="row mb-5">
+                        <div class="col">
+                            <div class="card card-profile text-center">
+                                <span class="mb-1 text-primary"><i class="icon-home"></i></span>
+                                <h3 class="mb-0">Role:</h3>
+                                <p class="text-muted px-4">Admin</p>
+                            </div>
+                        </div>
+                        @*<div class="col">
+                            <div class="card card-profile text-center">
+                                <span class="mb-1 text-warning"><i class="icon-globe-alt"></i></span>
+                                <h3 class="mb-0">Filière</h3>
+                                <p class="text-muted">3iAC</p>
+                            </div>
+                        </div>*@
+                        <div class="col-12 text-center">
+                            <button onclick="AfficheModalImage()" class="btn btn-danger px-5">Changer ma photo</button>
+                        </div>
+                    </div>
+
+                    <h4>Contact</h4>
+
+                    <ul class="card-profile__info">
+                        <li class="mb-1"><strong class="text-dark mr-4">Tel:</strong> <span>656446641</span></li>
+                        <li><strong class="text-dark mr-4">Email:</strong> <span>fulthonn@gmail.com</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+<script>
+
+     var AfficheModalImage = function () {
+
+         $("#modalProfilImage").modal("show");
+
+            //$("#table").ajax.reload();
+
+     }
+
+      var previewimg = function (event) {
+            var result = document.getElementById("profilImageModoal");
+            result.src = URL.createObjectURL(event.target.files[0]);
+      }
+
+
+         var showInPopup = function (url, title) {
+            $.ajax({
+                type: "GET",
+                url: url,
+                success: function (res) {
+                    $("#form-modal .modal-body").html(res);
+                    $("#form-modal .modal-title").html(title);
+                    $("#form-modal").modal("show");
+
+                    GetList();
+
+                }
+            })
+        };
+</script>
+

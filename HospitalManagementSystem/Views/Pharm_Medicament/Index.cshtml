@@ -1,0 +1,120 @@
+﻿@model IEnumerable<HospitalManagementSystem.Models.Medicament>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Pharmacie.cshtml";
+}
+
+
+
+<div class="row">
+    <!-- begin col-6 -->
+    <div class="col-md-12">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#default-tab-1" data-toggle="tab">Médicament</a></li>
+            <li class=""><a href="#default-tab-2" data-toggle="tab">Vente</a></li>
+            <li class=""><a href="#default-tab-3" data-toggle="tab">Equivalence</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade active in" id="default-tab-1">
+                <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
+                    <thead>
+                        <tr>
+                            <th>
+                                Nom
+                            </th>
+                            <th>
+                                Nom scientifique
+                            </th>
+                            <th>
+                                Quantité
+                            </th>
+                            <th>
+                                Prix
+                            </th>
+
+                            <th>
+                                Catégorie
+                            </th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+
+                    @foreach (var item in Model)
+                    {
+                        if (item.Quantite <= item.SeuilCritique)
+                        {
+                            <tr style="color:red">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NomCommercial)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NomScientifique)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Quantite)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Prix)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Configuration.Libelle)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NomCommercial)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NomScientifique)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Quantite)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Prix)
+                                </td>
+
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Configuration.Libelle)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })|
+
+                                </td>
+                            </tr>
+                        }
+
+                    }
+
+                </table>
+            </div>
+            <div class="tab-pane fade" id="default-tab-2">
+                @{ Html.RenderAction("GetAll", "Pharm_VenteMedicament");}
+            </div>
+            <div class="tab-pane fade" id="default-tab-3">
+                @{ Html.RenderAction("GetAll", "Pharm_Equivalent");}
+            </div>
+        </div>
+
+    </div>
+    <!-- end col-6 -->
+</div>
+
+@*<p>
+    @Html.ActionLink("Nouveau", "Create")
+</p>*@
+

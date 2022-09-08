@@ -1,0 +1,100 @@
+﻿@model HospitalManagementSystem.Models.Parametre
+
+<div>
+    <h4>Parametre du patient</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            Patient
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.NomComplet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tention)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tention)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Temperature)
+        </dt>
+
+        <dd>
+            @{
+                if (Model.Temperature.Value > 37)
+                {
+                    <b style="color:red">
+                        @Html.DisplayFor(model => model.Temperature)
+                    </b>
+                }
+                else
+                {
+                    <b>
+                        @Html.DisplayFor(model => model.Temperature)
+                    </b>
+                }
+
+            }
+
+
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Poids)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Poids)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Taille)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Taille)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Glycemie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Glycemie)
+        </dd>
+
+        <dt>
+            Freq. Card.
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FrequenceCardiaque)
+        </dd>
+
+        <dt>
+            Freq. Resp.
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FrequenceRespiratoire)
+        </dd>
+
+
+
+    </dl>
+</div>
+

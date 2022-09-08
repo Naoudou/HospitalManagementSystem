@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6cc7bc2c9d7a440799f8200d8249cade" Name="Diagram1">
+        <EntityTypeShape EntityType="Clinique_dbModel.ActePose" Width="1.5" PointX="12.75" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Clinique_dbModel.Compte" Width="1.5" PointX="10.5" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Clinique_dbModel.Configuration" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Clinique_dbModel.Equivalence" Width="1.5" PointX="7.5" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Clinique_dbModel.FamilleActe" Width="1.5" PointX="6" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Clinique_dbModel.Fiche" Width="1.5" PointX="10.5" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Clinique_dbModel.LibelleActe" Width="1.5" PointX="8.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Clinique_dbModel.Medicament" Width="1.5" PointX="5.25" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="Clinique_dbModel.Nature" Width="1.5" PointX="0.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Clinique_dbModel.Parametre" Width="1.5" PointX="10.5" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Clinique_dbModel.Patient" Width="1.5" PointX="8.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Clinique_dbModel.Personnel" Width="1.5" PointX="5.25" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Clinique_dbModel.Planning" Width="1.5" PointX="7.5" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Clinique_dbModel.Prescription" Width="1.5" PointX="15" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Clinique_dbModel.RendezVou" Width="1.5" PointX="7.5" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Clinique_dbModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Clinique_dbModel.VenteMedicament" Width="1.5" PointX="10.5" PointY="20.875" IsExpanded="true" />
+        <AssociationConnector Association="Clinique_dbModel.FK_ActePose_Fiche" ManuallyRouted="false" />
+        <AssociationConnector Association="Clinique_dbModel.FK_ActePose_LibelleActe" ManuallyRouted="false" />
+        <AssociationConnector Association="Clinique_dbModel.FK_ActePose_Personnel" ManuallyRouted="false" />
+        <AssociationConnector Association="Clinique_dbModel.FK_ActePose_Personnel1" ManuallyRouted="false" />
+        <AssociationConnector Association="Clinique_dbModel.FK_ActePose_Personnel2" ManuallyRouted="false" />
+        <AssociationConnector Association="Clinique_dbModel.FK_Prescription_ActePose" ManuallyRouted="false" />
+        <AssociationConnector Association="Clinique_dbModel.FK_Compte_Configuration" ManuallyRouted="false" />
+        <AssociationConnector Association="Clinique_dbModel.FK_Compte_Personnel" ManuallyRouted="false" />
+        <AssociationConnector Association="Clinique_dbModel.FK_Configuration_Nature" ManuallyRouted="false" />
+        <AssociationConnector Association="Clinique_dbModel.FK_Fiche_Configuration" ManuallyRouted="false" />
+        <AssociationConnector Association="Clinique_dbModel.FK_Medicament_Configuration" ManuallyRouted="false" />
+        <AssociationConnector Association="Clinique_dbModel.FK_Personnel_Configuration" ManuallyRouted="false" />
+        <AssociationConnector Association="Clinique_dbModel.FK_Personnel_Configuration1" ManuallyRouted="false" />
+        <AssociationConnector Association="Clinique_dbModel.FK_Personnel_Configuration2" ManuallyRouted="false" />
+        <AssociationConnector Association="Clinique_dbModel.FK_RendezVous_Configuration" ManuallyRouted="false" />
+        <AssociationConnector Association="Clinique_dbModel.FK_Equivalence_Medicament" ManuallyRouted="false" />
+        <AssociationConnector Association="Clinique_dbModel.FK_Equivalence_Medicament1" ManuallyRouted="false" />
+        <AssociationConnector Association="Clinique_dbModel.FK_LibelleActe_FamilleActe" ManuallyRouted="false" />
+        <AssociationConnector Association="Clinique_dbModel.FK_Fiche_LibelleActe" ManuallyRouted="false" />
+        <AssociationConnector Association="Clinique_dbModel.FK_Fiche_Patient" ManuallyRouted="false" />
+        <AssociationConnector Association="Clinique_dbModel.FK_Fiche_Personnel" ManuallyRouted="false" />
+        <AssociationConnector Association="Clinique_dbModel.FK_Prescription_Medicament" ManuallyRouted="false" />
+        <AssociationConnector Association="Clinique_dbModel.FK_VenteMedicament_Medicament" ManuallyRouted="false" />
+        <AssociationConnector Association="Clinique_dbModel.FK_Parametre_Patient" ManuallyRouted="false" />
+        <AssociationConnector Association="Clinique_dbModel.FK_RendezVous_Patient" ManuallyRouted="false" />
+        <AssociationConnector Association="Clinique_dbModel.FK_Planning_Personnel" ManuallyRouted="false" />
+        <AssociationConnector Association="Clinique_dbModel.FK_RendezVous_Personnel" ManuallyRouted="false" />
+        <AssociationConnector Association="Clinique_dbModel.FK_VenteMedicament_Personnel" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,57 @@
+﻿@model HospitalManagementSystem.Models.VenteMedicament
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout_Pharmacie.cshtml";
+}
+
+<h2>Suppression</h2>
+
+<h3>Voulez-vous vraiment supprimer cette vente médicament?</h3>
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Medicament.NomCommercial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Medicament.NomCommercial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Personnel.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Personnel.Nom)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Supprimer" class="btn btn-default" /> |
+            @Html.ActionLink("Vente", "Index")
+        </div>
+    }
+</div>

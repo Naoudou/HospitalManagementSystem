@@ -1,0 +1,96 @@
+﻿@model IEnumerable<HospitalManagementSystem.Models.Parametre>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+<div>
+    <div col-md-4>
+
+    </div>
+    <div col-md-4 id="dataContainer">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tention)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Temperature)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Poids)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Glycemie)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FrequenceCardiaque)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FrequenceRespiratoire)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Taille)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Patient.Nom)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tention)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Temperature)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Poids)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Glycemie)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FrequenceCardiaque)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FrequenceRespiratoire)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Taille)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Patient.Nom)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+    <div col-md-4>
+
+    </div>
+</div>
+

@@ -1,0 +1,116 @@
+﻿@model IEnumerable<HospitalManagementSystem.Models.Personnel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<p>
+
+    <a href='@Url.Action("Create", "Personnel")' class="btn btn-primary m-r-5 m-b-5">Ajouter</a>
+</p>
+
+<div class="panel-body">
+    <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
+        <thead>
+            <tr>
+                <th>
+                   Nom 
+                </th>
+                 
+                <th>
+                    prénom
+                </th>
+                <th>
+                   Naissance
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Adresse)
+                </th>
+                <th>
+                   Téléphone
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sexe)
+                </th>
+              
+                <th>
+                   Spécialité
+                </th>
+                <th>
+                   Service
+                </th>
+                <th>
+                   Qualité
+                </th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nom)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Prenom)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateNaissance)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Adresse)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telephone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @{
+                            if (item.Sexe == 0)
+                            {
+                                <div>Homme</div>
+                            }
+                            else
+                            {
+                                <div>Femme</div>
+                            }
+                        }
+
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Configuration.Libelle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Configuration1.Libelle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Configuration2.Libelle)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Code }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Code }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Code })
+                    </td>
+                </tr>
+            </tbody>
+        }
+    </table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        App.init();
+        TableManageResponsive.init();
+    });
+</script>

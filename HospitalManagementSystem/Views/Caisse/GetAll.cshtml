@@ -1,0 +1,95 @@
+﻿@model IEnumerable<HospitalManagementSystem.Models.Fiche>
+
+@*<p>
+    @Html.ActionLink("Nouveau", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+           Patient
+        </th>
+        <th>
+            Médecin
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        @*<th>
+            Statut
+        </th>*@
+        <th>
+            Raison
+        </th>
+        <th>
+            Examen
+        </th>
+
+        <th>Action</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (item.Paiement == 0)
+        {
+            <tr style="color:red">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Patient.NomComplet)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Personnel.NomComplet)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Paiement)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Configuration.Libelle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LibelleActe.Libelle)
+                </td>
+
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                    <a href="#" class="btn mb-1 btn-primary btn-xm" onclick="confirmeactiver(@item.Id)"><i>Valider</i></a>
+                </td>
+            </tr>
+        }
+        else
+        {
+            <tr style="color:green">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Patient.NomComplet)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Personnel.NomComplet)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Paiement)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Configuration.Libelle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LibelleActe.Libelle)
+                </td>
+
+                <td>
+                    @*@html.actionlink("edit", "edit", new { id = item.id }) |
+                        @html.actionlink("details", "details", new { id = item.id }) |
+                        @html.actionlink("delete", "delete", new { id = item.id })|*@
+                    <a href="#"  class="btn mb-1 btn-primary btn-xm disabled" onclick="confirmeactiver(@item.Id)"><i>Valider</i></a>
+                </td>
+            </tr>
+        }
+
+    }
+
+</table>

@@ -1,0 +1,91 @@
+﻿@model IEnumerable<HospitalManagementSystem.Models.ActePose>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+          Acte médical
+        </th>
+        <th>
+           Prescripteur
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.SigneClinique)
+        </th>
+
+
+        <th>
+            @Html.DisplayNameFor(model => model.Motif)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResumeSyndromique)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HistoireMaladie)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Diagnostique)
+        </th>
+
+
+
+        @*<th>
+            @Html.DisplayNameFor(model => model.Personnel1.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Personnel2.Nom)
+        </th>*@
+
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+         <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.LibelleActe.Libelle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Personnel.Nom)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.SigneClinique)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Motif)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ResumeSyndromique)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HistoireMaladie)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Diagnostique)
+        </td>
+
+
+
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Personnel1.Nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Personnel2.Nom)
+        </td>*@
+
+    </tr>
+}
+
+</table>

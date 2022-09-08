@@ -1,0 +1,198 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+<!-- begin row -->
+<div class="row">
+
+
+    <!-- begin col-3 -->
+    <div class="col-md-3 col-sm-6">
+        <div class="widget widget-stats bg-green">
+            <div class="stats-icon"><i class="fa fa-user-circle"></i></div>
+            <div class="stats-info">
+                <h4>Nombre total de visiteurs</h4>
+                <p>@ViewBag.NombreTotalVisite</p>
+            </div>
+            <div class="stats-link">
+                <a href="javascript:;">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <!-- end col-3 -->
+    <!-- begin col-3 -->
+    <div class="col-md-3 col-sm-6">
+        <div class="widget widget-stats bg-blue">
+            <div class="stats-icon"><i class="fa fa-ambulance"></i></div>
+            <div class="stats-info">
+                <h4>Nombre total d'examen</h4>
+                <p>@ViewBag.NombreTotalExamen</p>
+            </div>
+            <div class="stats-link">
+                <a href="javascript:;">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <!-- end col-3 -->
+    <!-- begin col-3 -->
+    <div class="col-md-3 col-sm-6">
+        <div class="widget widget-stats bg-purple">
+            <div class="stats-icon"><i class="fa fa-stethoscope"></i></div>
+            <div class="stats-info">
+                <h4>Total des consultations</h4>
+                <p>@ViewBag.NombreTotalConsultation</p>
+            </div>
+            <div class="stats-link">
+                <a href="javascript:;">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <!-- end col-3 -->
+    <!-- begin col-3 -->
+    <div class="col-md-3 col-sm-6">
+        <div class="widget widget-stats bg-red">
+            <div class="stats-icon"><i class="fa fa-clock-o"></i></div>
+            <div class="stats-info">
+                <h4>Nouveau patient</h4>
+                <p>3</p>
+            </div>
+            <div class="stats-link">
+                <a href="javascript:;">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <!-- end col-3 -->
+    
+</div>
+
+<!-- end row -->
+@* Debut graphe *@
+
+<div class="panel panel-inverse" data-sortable-id="index-1">
+    <div class="panel-heading">
+        <div class="panel-heading-btn">
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+        </div>
+        <h4 class="panel-title">Variation de la fréquentation par genre</h4>
+    </div>
+    <div class="panel-body">
+      
+        <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+    </div>
+</div>
+@* Fin graphe *@
+<!-- begin row -->
+<div class="row">
+    <!-- begin col-8 -->
+    <div class="col-md-8">
+        <div class="panel panel-inverse" data-sortable-id="index-1">
+            <div class="panel-heading">
+                <div class="panel-heading-btn">
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                </div>
+                <h4 class="panel-title">Nombre de visite par genre (les 7 derniers jours)</h4>
+            </div>
+            <div class="panel-body">
+                @{Html.RenderAction("Partial_BilanJournalier", "Home");}
+            </div>
+        </div>
+       
+    </div>
+    <!-- end col-8 -->
+    <!-- begin col-4 -->
+    <div class="col-md-4">
+        <div class="panel panel-inverse" data-sortable-id="index-6">
+            <div class="panel-heading">
+                <div class="panel-heading-btn">
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                </div>
+                <h4 class="panel-title">Détail journalier</h4>
+            </div>
+            <div class="panel-body p-t-0">
+                <table class="table table-valign-middle m-b-0">
+                    <thead>
+                        <tr>
+                            <th>Libellé</th>
+                            <th>Nombre</th>
+                            <th>Commentaire</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><label class="label label-danger">Nouveau patient</label></td>
+                            <td>5 <span class="text-success"><i class="fa fa-arrow-up"></i></span></td>
+                            <td><div id="sparkline-unique-visitor"></div>RAS</td>
+                        </tr>
+                        <tr>
+                            <td><label class="label label-warning">Consultation</label></td>
+                            <td>@ViewBag.NombreConsultationDuJour</td>
+                            <td><div id="sparkline-bounce-rate"></div>RAS</td>
+                        </tr>
+                        <tr>
+                            <td><label class="label label-success">Examens</label></td>
+                            <td>@ViewBag.NombreExamenDuJour</td>
+                            <td><div id="sparkline-total-page-views"></div>RAS</td>
+                        </tr>
+                        <tr>
+                            <td><label class="label label-primary">Rendez-vous</label></td>
+                            <td>0</td>
+                            <td><div id="sparkline-avg-time-on-site"></div>RAS</td>
+                        </tr>
+                        <tr>
+                            <td><label class="label label-default">Total freq.</label></td>
+                            <td>@ViewBag.NombreTotalDuJour </td>
+                            <td><div id="sparkline-new-visits"></div></td>
+                        </tr>
+                        @*<tr>
+                            <td><label class="label label-inverse">Return Visitors</label></td>
+                            <td>73.4%</td>
+                            <td><div id="sparkline-return-visitors"></div></td>
+                        </tr>*@
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+       
+    </div>
+    <!-- end col-4 -->
+</div>
+<!-- end row -->
+<script>
+        window.onload = function () {
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+	            animationEnabled: true,
+	            title: {
+		            text: "Variation du nombre des consultations par genre"
+	            },
+                toolTip: {
+                    shared: true
+	            },
+	            data: [{
+		            type: "line",
+		            name: "Homme",
+		            showInLegend: true,
+		            dataPoints: @Html.Raw(ViewBag.DataPointsHomme)
+	            }, {
+		            type: "line",
+		            name: "Femme",
+		            showInLegend: true,
+		            dataPoints: @Html.Raw(ViewBag.DataPointsFemme)
+	            }]
+            });
+            chart.render();
+
+        }
+</script>
